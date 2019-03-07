@@ -4,5 +4,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable (scratchpad main.cpp)
 
-install (TARGETS scratchpad DESTINATION sbin)
 
+set (
+    SERVICE_FILES xyz.openbmc_project.scratchpad.service
+)
+
+
+install (TARGETS scratchpad DESTINATION sbin)
+install (FILES ${SERVICE_FILES} DESTINATION /lib/systemd/system/)

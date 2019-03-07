@@ -1,0 +1,10 @@
+[Unit]
+Description=scratchpad
+After=dbus.service
+
+[Service]
+ExecStart=/usr/sbin/scratchpad
+Type=simple
+
+[Install]
+WantedBy=basic.target
