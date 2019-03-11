@@ -6,9 +6,11 @@ add_executable (scratchpad main.cpp)
 
 set (SERVICE_FILES xyz.openbmc_project.scratchpad.service)
 
-set (SCRATCHPAD_LINK_LIBS -lpthread -lsystemd sdbusplus)
+set (SCRATCHPAD_LINK_LIBS pthread systemd sdbusplus sdeventplus inspur_dbus)
 
 add_dependencies (scratchpad sdbusplus)
+add_dependencies (scratchpad sdeventplus)
+add_dependencies (scratchpad inspur-dbus-interfaces)
 target_link_libraries (scratchpad ${SCRATCHPAD_LINK_LIBS})
 
 install (TARGETS scratchpad DESTINATION sbin)
