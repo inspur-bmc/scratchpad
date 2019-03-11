@@ -4,11 +4,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable (scratchpad main.cpp)
 
+set (SERVICE_FILES xyz.openbmc_project.scratchpad.service)
 
-set (
-    SERVICE_FILES xyz.openbmc_project.scratchpad.service
-)
+set (SCRATCHPAD_LINK_LIBS -lsystemd sdbusplus)
 
+add_dependencies (scratchpad sdbusplus)
+target_link_libraries (scratchpad ${SCRATCHPAD_LINK_LIBS})
 
 install (TARGETS scratchpad DESTINATION sbin)
 install (FILES ${SERVICE_FILES} DESTINATION /lib/systemd/system/)
